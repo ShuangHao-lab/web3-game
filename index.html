@@ -244,14 +244,14 @@
             const betValue = document.getElementById('betAmount').value;
             
             try {
-                statusText.innerText = "Waiting for trading...";
+                statusText.innerText = "等待确认交易...";
                 
                 // 发送交易
                 const tx = await contract.spinWheel({ 
                     value: ethers.parseEther(betValue) 
                 });
 
-                statusText.innerText = "Collecting Trade (Mining)...";
+                statusText.innerText = "交易打包中 (Mining)...";
                 spinBtn.disabled = true;
                 spinBtn.innerText = "SPINNING...";
                 
@@ -276,7 +276,7 @@
             } catch (error) {
                 console.error(error);
                 clearInterval(intervalId);
-                statusText.innerText = "Trade failed";
+                statusText.innerText = "交易失败或被取消";
                 spinBtn.disabled = false;
                 spinBtn.innerText = "PULL LEVER";
             }
